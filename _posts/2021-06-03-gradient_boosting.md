@@ -2,7 +2,7 @@
 layout: post
 title:  "Notes for Gradient Boosting"
 date:   2021-06-03 14:37:02 -0500
-categories: jekyll update
+tags: ML/DL
 ---
 
 
