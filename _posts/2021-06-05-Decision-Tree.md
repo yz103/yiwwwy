@@ -43,6 +43,7 @@ Information Gain = entropy(before split) - average entropy (children)
 </p>
 
 
+
 We use Fig.1 to show an example how to calculate the entropy of a node and the average entropy after splitting. Assuming the points in dataset belong to one node, it contains 3 "no" labels and 4 "yes" labels, so the entropy of this node is 
 $$
 Entropy = -\frac{3}{7}log(\frac{3}{7})-\frac{4}{7}log(\frac{4}{7})=0.985
