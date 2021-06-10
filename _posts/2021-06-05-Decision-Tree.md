@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  "Decision Tree"
 date:   2021-06-05 10:28:02 -0500
 tags: ML/DL
@@ -28,9 +27,9 @@ There are different ways to capture the impurity quantitatively and here we intr
 #### Entropy Impurity
 
 Entropy is a common way to measure impurity.
-$$
-Entroy = \sum_{i}-p_i log_2(p_i)
-$$
+
+$$Entroy = \sum_{i}-p_i log_2(p_i)$$
+
 If the dataset is pure in which all the data points have the same label, the entropy is 0. The higher impurity is, the higher entropy is. And the higher the entropy is, the more information the dataset content. 
 
 The information gain for one split or for one internal node is that
@@ -45,48 +44,68 @@ Information Gain = entropy(before split) - average entropy (children)
 
 
 We use Fig.1 to show an example how to calculate the entropy of a node and the average entropy after splitting. Assuming the points in dataset belong to one node, it contains 3 "no" labels and 4 "yes" labels, so the entropy of this node is 
+
 $$
 Entropy = -\frac{3}{7}log(\frac{3}{7})-\frac{4}{7}log(\frac{4}{7})=0.985
 $$
+
 Assuming we split based on "weather", one child node contains all "Sunny" points (3 data points) and the other contains all "Rainy" points (4 data points). For the "Sunny" child node, the total number of data points is 3 with all "yes" labels, the entropy for this child is 
+
 $$
 Entropy(Child-Sunny) = -\frac{3}{3}log(\frac{3}{3}) = 0
 $$
+
 For the "Rainy" child node, the total number of data points is 4 with 1 "yes" label and 3 "no" labels, the entropy for this child is 
+
 $$
 Entropy(Child-Rainy) = -\frac{1}{4}log(\frac{1}{4})-\frac{3}{4}log(\frac{3}{4})=0.811
 $$
+
 So the average entropy of children nodes is
+
 $$
 Average = \frac{3}{7}Entropy(child-sunny)+\frac{4}{7}Entropy(child-rainy)=\frac{3}{7}*0+\frac{4}{7}*0.811 = 0.463
 $$
+
 The information gain based on entropy impurity is 
+
 $$
 IG = Entropy(parent)-Average(Children) = 0.985-0.463 = 0.522
 $$
+
+
 There is a special case that the children data points labels distribution is exactly the same as parents then information gain  is 0 which means we didn't get any more information based on this split. 
 
 #### Gini Impurity
 
 Gini impurity is another method to calculate the impurity. And its formula is 
+
 $$
 Gini = \sum_{i}p_i*(1-p_i)
 $$
+
 Same as entropy, when the dataset contains pure labels, Gini cost is 0.
 
 Using the same dataset above, the Gini cost of the dataset is 
+
 $$
 Gini = \frac{3}{7}*(1-\frac{3}{7})+\frac{4}{7}*(1-\frac{4}{7}) = 0.49
 $$
+
 Again, we split based on "Weather", and the Gini cost for "Sunny" child node is 
+
 $$
 Gini(child-sunny) = \frac{3}{3}(1-\frac{3}{3})=0
 $$
+
 The Gini cost for "Rainy" child node is 
+
 $$
 Gini(child-rainy) = \frac{1}{4}*(1-\frac{1}{4})+\frac{3}{4}*(1-\frac{3}{4})=0.375
 $$
+
 Therefore, the information gain based on this split is 
+
 $$
 IG = Gini(parent)-Average(chilren) = 0.48 - (\frac{3}{7}*0+\frac{4}{7}*0.375)=0.265
 $$
