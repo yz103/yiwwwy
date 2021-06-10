@@ -26,6 +26,6 @@ titles:
 key: page-about
 ---
 
-![TeXt Theme](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/TeXt-home.jpg)
+![TeXt Theme](https://yz103.github.io/yiwwwy/assets/posts_fig/cats.png)
 
 Hey welcome! My name is Yiwei. I like a lot of things but not so much. I like coding but not so much. I like algorithm but not so much. I like movies but not so much. I like dancing but not so much. I like fashion design but not so much. I will like more things in the future but maybe also not so much. 
