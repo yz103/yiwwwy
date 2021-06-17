@@ -10,11 +10,13 @@ BLEU, bilingual evaluation understudy, is a standard algorithm to evaluate the q
 Suppose we have a candidate translation $$c$$ and a set of $$k$$ reference translations $$r_1,\dots,r_k$$.
 
 - Firstly compute the modified n-gram precision $$p_n$$ for the candidate text
+
   $$
   p_n = \frac{\sum_{ngram\in c}min(max_{i=1,\dots,k}Count_{ri}(ngram),Count_c(ngram))}{\sum_{ngram\in c}Count_c(ngram)}
   $$
 
 - Next compute the brevity penalty $$BP$$. $$BP$$ will penalize the candidate if the length of candidate is very short comparing with the reference sentences.  Let $$len(c)$$ be the length of $$c$$ and let $$len(r)$$ be the length of the reference translation that is closest to $$len(c)$$ (in the case of two equally-close reference translation lengths, choose $$len(r)$$ as the shorter one)
+
   $$
   BP = 
   \begin{cases}
@@ -24,9 +26,11 @@ Suppose we have a candidate translation $$c$$ and a set of $$k$$ reference trans
   $$
 
 - Lastly, the BLEU score for candidate $$c$$ with respect to $$r_1,\dots,r_k$$ is 
+
   $$
   BLEU = BP\times epx(\sum_{n=1}^{4}\lambda_n logp_n)
   $$
+  
   where $$\lambda_1,\lambda_2,\lambda_3,\lambda_4$$ are weights that sum to 1. The log here is natural log. And here we consider until 4-gram.
 
 
@@ -90,8 +94,10 @@ The length of candidate is 5, the length of $$r_1$$ is 6 and the length of $$r_2
 **Calculate BLEU**
 
 Suppose the weights is $$\lambda_1=1/3$$, $$\lambda_2=1/3$$, $$\lambda_3=1/3$$,
+
 $$
 BLEU = 1\times exp(\frac{1}{3}log(\frac{3}{5})+\frac{1}{3}log(\frac{1}{2})+\frac{1}{3}log(\frac{1}{3})) = 0.464
 $$
+
 **BLEU's output is always a number between 0 and 1**. It indicates the similarity between the candidate text or the translated text with the reference texts, **with values closer to 1 representing more similar to the references texts**. 
 
