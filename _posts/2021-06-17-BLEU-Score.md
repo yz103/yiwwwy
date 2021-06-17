@@ -3,20 +3,22 @@ title:  "BLEU Score"
 tags: ML/DL
 ---
 
-BLEU, bilingual evaluation understudy, is a standard algorithm to evaluate the quality of translated text in machine translation. For example, we want to translate a French sentence into English, as we know, there is no single right answer for translation, and different people may have different ways to translate the same sentences. So we will choose several sentences translated from human as the reference texts. BLEU provides a way to measure the similarity between the translated text from machine with the references texts.
+BLEU, bilingual evaluation understudy, is a standard algorithm to **evaluate the quality of translated text in machine translation**. For example, we want to translate a French sentence into English, as we know, there is no single right answer for translation, and different people may have different ways to translate the same sentences. So we will choose several sentences translated from human as the reference texts. BLEU provides a way to measure the similarity between the translated text from machine with the references texts.
+
+**BLEU's output is always a number between 0 and 1**. It indicates the similarity between the candidate text or the translated text with the reference texts, **with values closer to 1 representing more similar to the references texts**. 
 
 #### Algorithm
 
 Suppose we have a candidate translation $$c$$ and a set of $$k$$ reference translations $$r_1,\dots,r_k$$.
 
 - Firstly compute the modified n-gram precision $$p_n$$ for the candidate text
-
+  
   $$
   p_n = \frac{\sum_{ngram\in c}min(max_{i=1,\dots,k}Count_{ri}(ngram),Count_c(ngram))}{\sum_{ngram\in c}Count_c(ngram)}
   $$
 
 - Next compute the brevity penalty $$BP$$. $$BP$$ will penalize the candidate if the length of candidate is very short comparing with the reference sentences.  Let $$len(c)$$ be the length of $$c$$ and let $$len(r)$$ be the length of the reference translation that is closest to $$len(c)$$ (in the case of two equally-close reference translation lengths, choose $$len(r)$$ as the shorter one)
-
+  
   $$
   BP = 
   \begin{cases}
@@ -26,7 +28,7 @@ Suppose we have a candidate translation $$c$$ and a set of $$k$$ reference trans
   $$
 
 - Lastly, the BLEU score for candidate $$c$$ with respect to $$r_1,\dots,r_k$$ is 
-
+  
   $$
   BLEU = BP\times epx(\sum_{n=1}^{4}\lambda_n logp_n)
   $$
@@ -99,5 +101,12 @@ $$
 BLEU = 1\times exp(\frac{1}{3}log(\frac{3}{5})+\frac{1}{3}log(\frac{1}{2})+\frac{1}{3}log(\frac{1}{3})) = 0.464
 $$
 
-**BLEU's output is always a number between 0 and 1**. It indicates the similarity between the candidate text or the translated text with the reference texts, **with values closer to 1 representing more similar to the references texts**. 
+
+
+
+Reference:
+
+1. Stanford CS224N A4
+2. https://en.wikipedia.org/wiki/BLEU
+3. LeI Mao. [Bilingual Evaluation Understudy (BLEU)](https://leimao.github.io/blog/BLEU-Score/)
 
